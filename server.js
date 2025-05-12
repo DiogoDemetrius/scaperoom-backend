@@ -18,10 +18,5 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/game', gameRoutes);
 
-// Rota de teste CORS (opcional, pode remover se não precisar)
-app.get('/api/test-cors', (req, res) => {
-  res.json({ message: 'CORS funcionando corretamente!' });
-});
-
 // Exporta o app para o Vercel
 module.exports = app;
