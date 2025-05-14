@@ -6,18 +6,18 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/auth/(.*)",
-      "dest": "server.js"
+      "source": "/api/auth/(.*)",
+      "destination": "server.js"
     },
     {
-      "src": "/api/game/(.*)",
-      "dest": "server.js"
+      "source": "/api/game/(.*)",
+      "destination": "server.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "server.js"
+      "source": "/(.*)",
+      "destination": "server.js"
     }
   ],
   "headers": [
