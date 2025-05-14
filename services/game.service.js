@@ -1,4 +1,5 @@
 const Progress = require('../models/Progress');
+const User = require('../models/User');
 
 const getProgress = async (userId) => {
   const progress = await Progress.findOne({ userId });
@@ -12,4 +13,29 @@ const updateProgress = async (userId, updates) => {
   return progress;
 };
 
-module.exports = { getProgress, updateProgress };
+const getRanking = async () => {
+  // Busca todos os progressos e faz join com a tabela de usuários para pegar o nome do grupo
+  const ranking = await Progress.aggregate([
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'userId',
+        foreignField: '_id',
+        as: 'user'
+      }
+    },
+    { $unwind: '$user' },
+    {
+      $project: {
+        group: '$user.group',
+        score: 1,
+        _id: 0
+      }
+    },
+    { $sort: { score: -1 } }
+  ]);
+
+  return ranking;
+};
+
+module.exports = { getProgress, updateProgress, getRanking };

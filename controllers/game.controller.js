@@ -19,4 +19,13 @@ const updateProgress = async (req, res) => {
   }
 };
 
-module.exports = { getProgress, updateProgress };
+const getRanking = async (req, res) => {
+  try {
+    const ranking = await gameService.getRanking();
+    res.json(ranking);
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao carregar ranking' });
+  }
+};
+
+module.exports = { getProgress, updateProgress, getRanking };
