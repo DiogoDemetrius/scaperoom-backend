@@ -3,7 +3,8 @@ const cors = require('cors');
 const allowedOrigins = [
   'http://localhost:3000',
   'https://scaperoom-fis-homologacao.vercel.app',
-  'https://scaperoom-fis.vercel.app'
+  'https://scaperoom-fis.vercel.app',
+  'https://m-fis-homologacao.vercel.app'
 ];
 
 const corsOptions = {
